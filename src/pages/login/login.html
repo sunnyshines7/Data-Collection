@@ -1,0 +1,30 @@
+<ion-content class="back_image">
+  <ion-grid class="logo">
+    <ion-row>
+      <ion-col>
+        <form #f="ngForm" (ngSubmit)="onSignIn(f)">
+          <img src="./assets/imgs/Telengana_State_Emblem.png" class="img-responsive site-logo" />
+          <div class="login_text">
+            <p>Census Of Water Bodies</p>
+            <p>M/O Water Resources, RD & GR</p>
+            <p>Government of India</p>
+          </div>
+          <h3>Login</h3>
+          <ion-item>
+            <ion-icon name="contact" item-left></ion-icon>
+            <ion-input placeholder="Email Id" name="email_id" type="email" clearInput ngModel></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="key" item-left></ion-icon>
+            <ion-input placeholder="Password" name="auth" clearInput ngModel type="password"></ion-input>
+          </ion-item>
+          <button class="btn-action" type="submit">
+            <!-- <ion-icon name="trending-down" item-left></ion-icon> -->
+            Login
+            <!-- <ion-icon name="trending-up" item-right></ion-icon> -->
+          </button>
+      </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

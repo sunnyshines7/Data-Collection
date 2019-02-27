@@ -1,0 +1,54 @@
+<ion-menu [content]="content" type="overlay" class="side_menu">
+    <ion-header no-lines>
+        <ion-toolbar>
+          <p>{{user?.objectId}}</p>
+            <!-- <img src="assets/icon/close.png" menuClose item-left class="menu_close_btn"> -->
+        </ion-toolbar>
+
+    </ion-header>
+
+    <ion-content class="side_list">
+      <ion-list no-lines class="side-menu-list">
+        <ion-item >
+          <button ion-item tappable (click)="Onload(homePage)" class="menu_button">
+            <ion-icon name="home" item-left></ion-icon>
+            <h6 class="sidemenu-title">Home</h6>
+          </button>
+          <ion-note item-end color="primary"></ion-note>
+        </ion-item>
+        <ion-item >
+          <button ion-item tappable (click)="Onload(waterPage)" class="menu_button">
+            <ion-icon name="calendar" item-left></ion-icon>
+            <h6 class="sidemenu-title">Water Body Schedule</h6>
+          </button>
+          <ion-note item-end color="primary"></ion-note>
+        </ion-item>
+        <ion-item >
+          <button ion-item tappable (click)="Onload(reportPage)" class="menu_button">
+            <ion-icon name="calendar" item-left></ion-icon>
+            <h6 class="sidemenu-title">Reports</h6>
+          </button>
+          <ion-note item-end color="primary"></ion-note>
+        </ion-item>
+        <ion-item >
+          <button ion-item tappable (click)="Onload(syncPage)" class="menu_button">
+            <ion-icon name="sync" item-left></ion-icon>
+            <h6 class="sidemenu-title">Sync</h6>
+          </button>
+          <ion-note item-end color="primary"></ion-note>
+        </ion-item>
+        <ion-item >
+          <button ion-item tappable (click)="OnLogout()" class="menu_button">
+            <ion-icon name="exit" item-left></ion-icon>
+            <h6 class="sidemenu-title">Logout</h6>
+          </button>
+          <ion-note item-end color="primary"></ion-note>
+        </ion-item> 
+      </ion-list>
+    </ion-content>
+</ion-menu>
+
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+

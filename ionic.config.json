@@ -1,0 +1,7 @@
+{
+  "name": "dataCollection",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

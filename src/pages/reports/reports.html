@@ -1,0 +1,160 @@
+<!--
+  Generated template for the WaterBodySchedulePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Census Of Water Bodies</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content class="back_image" padding>
+  <div class="back" >
+    <ion-list radio-group disabled="true" style="margin: 0;" [(ngModel)]="user.directory.area">
+      <ion-row class="text-center">
+        <ion-col col-6>
+          <ion-item>
+            <ion-radio value="rural" item-start></ion-radio>
+            <ion-label stacked>Rural</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-radio value="urban" item-start></ion-radio>
+            <ion-label stacked>Urban</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+    <ion-list>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label stacked>State</ion-label>
+            <ion-select disabled="true" name="state" [(ngModel)]="user.directory.state_name">
+              <ion-option [value]="user.directory.state_name">{{user.directory.state_name}}</ion-option>
+              <!-- <ion-option value="Telengana2" >Telengana2</ion-option> -->
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label stacked>District</ion-label>
+            <ion-select disabled="true" [(ngModel)]="user.directory.district_name">
+              <ion-option [value]="user.directory.district_name" >{{user.directory.district_name}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label stacked>Block/Tehsil</ion-label>
+            <ion-select disabled="true" [(ngModel)]="user.directory.mandal">
+              <ion-option [value]="user.directory.mandal">{{user.directory.mandal}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label stacked>Village</ion-label>
+            <ion-select interface="popover" [(ngModel)]='wbs.directory' (ionChange)="changedVillage(wbs.directory)">
+              <ion-option *ngFor="let vil of directory" [value]="vil">{{vil.village}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        </ion-row>
+        <ion-row>
+        <p *ngIf="waterList?.length == 0" style="text-align: center; width: 100%;">No Water Body Schedule</p>
+        <table border="1" *ngIf="waterList" style="overflow: scroll; display: flex;">
+            <tr *ngIf="waterList.length > 0">
+              <th>Unique Id</th>
+              <th>Lat</th>
+              <th>Long</th>
+              <th>Thumbnail of Photo</th>
+            </tr>
+            <tr *ngFor="let w of waterList">
+              <td>{{w.uik}}</td>
+              <td>1.2456788</td>
+              <td>-17.23832832</td>
+              <td><img src=""></td>
+            </tr>
+          </table>
+          </ion-row>
+      
+    </ion-list>
+  </div>
+</ion-content>
+
+<!-- <ion-content padding>
+  <div>
+    <ion-list>
+      <ion-row class="text-center">
+        <ion-col col-6>
+          <ion-item>
+            <ion-radio checked="true" value="go" item-start></ion-radio>
+            <ion-label stacked>Rural</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-radio value="go" item-start></ion-radio>
+            <ion-label stacked>Urban</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label stacked>State</ion-label>
+            <ion-select>
+              <ion-option value="bacon" selected="true">Telengana</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label stacked>District</ion-label>
+            <ion-select>
+              <ion-option value="bacon" selected="true">Kumaram</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label stacked>Block/Tehsil</ion-label>
+            <ion-select>
+              <ion-option value="bacon" selected="true">Chintal</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label stacked>Village</ion-label>
+            <ion-select>
+              <ion-option value="bacon" selected="true">Babapur</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+       
+      </ion-row>
+      <ion-row>
+        <table border="1">
+            <tr>
+              <th>Unique Id</th>
+              <th>Lat</th>
+              <th>Long</th>
+              <th>Thumbnail of Photo</th>
+            </tr>
+            <tr>
+              <td>1/123/232/234/234</td>
+              <td>1.2456788</td>
+              <td>-17.23832832</td>
+              <td><img src=""></td>
+            </tr>
+          </table>
+      </ion-row>
+    </ion-list>
+  </div>
+</ion-content> -->

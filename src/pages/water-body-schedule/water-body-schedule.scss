@@ -1,0 +1,50 @@
+page-water-body-schedule {
+	ion-content {
+		div.back {
+			background: #eee !important;
+			// margin: 16px;
+		}
+	}
+	ion-select, ion-input {
+		border: 1px solid #333;
+    background: #bccff1;
+	}
+	ion-item {
+		background-color: #eee !important; 
+	}
+	ion-radio {
+		/* border: 1px solid #333;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    padding: 1px 2px; */
+	}
+
+	ion-item .item-inner {
+		border-bottom: none !important;
+	}
+	
+	.item-ios .radio-ios[item-left], .item-ios .radio-ios[item-start] {
+    margin: 0px 10px 8px 3px;
+	}
+
+	.camera_icon {
+		font-size: 3em;
+    margin: 0 auto;
+    color: #fff;
+    background-color: #3abfe0;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 0px 7px;
+	}
+	.image_preview {
+		margin: 16px auto;
+    height: 100px;
+    width: 129px;
+    background: #3abfe0;
+    color: #fff;
+    text-align: center;
+    padding: 36px 0;
+	}
+}

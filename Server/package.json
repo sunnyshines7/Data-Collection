@@ -1,0 +1,17 @@
+{
+  "name": "data_collection",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sandeep",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "parse-dashboard": "^1.2.0",
+    "parse-server": "^3.1.3"
+  }
+}

@@ -1,0 +1,19 @@
+page-home {
+	ion-content {
+		background: #f9f8f8 !important;
+	}
+	.circle_count {
+		border: 1px solid #333;
+    border-radius: 50%;
+    height: 100px;
+    width: 75%;
+    padding: 10px;
+    margin: 5px 0px 5px 24px;
+	}
+
+	.circle_count_outer {
+		border: 1px solid #333;
+    border-radius: 50%;
+    padding: 10px 0px;
+	}
+}

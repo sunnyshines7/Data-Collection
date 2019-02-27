@@ -1,0 +1,70 @@
+
+// compatible API routes.
+const Express = require('express');
+const ParseServer = require('parse-server').ParseServer;
+
+const ParseDashboard = require('parse-dashboard');
+const serverURL =  'http://192.168.0.115:8081/parse';
+var Server = new ParseServer({
+    "databaseURI": 'mongodb://admin:admin123@localhost:27017/dataCollection',
+    "cloud": __dirname + '/cloud/main.js',
+    "appId": 'AGdJfMjQmSpVsXuZx4z6C9EbGeKgNjRnTqVtYv2y',
+    "masterKey": 'MjQmSqVsXu2x4z6C9EbGeKgNkRnTqWtYv2y5A7Ca',
+    "restAPIKey": "kRnTqWtYv3y5A7DaFcHfMhPkSpUrXuZw3z6B8DbG",
+    "javascriptKey": 'C9EbHeKgNkRnTqWtYv2y5A7DaFcHfMhPkSpUrXuZ',
+    "appName": 'DataCollection',
+    "verifyUserEmails": false,
+    "serverURL": serverURL,
+    "publicServerURL": serverURL
+});
+
+var App = Express();
+App.use(Express.static('public'));
+
+var trustProxy = true;
+var dashboard = new ParseDashboard({
+    "apps": [
+        {
+            "serverURL": serverURL,
+            "appId": 'AGdJfMjQmSpVsXuZx4z6C9EbGeKgNjRnTqVtYv2y',
+            "masterKey": 'MjQmSqVsXu2x4z6C9EbGeKgNkRnTqWtYv2y5A7Ca',
+			"restAPIKey": "kRnTqWtYv3y5A7DaFcHfMhPkSpUrXuZw3z6B8DbG",
+            "javascriptKey": 'C9EbHeKgNkRnTqWtYv2y5A7DaFcHfMhPkSpUrXuZ',
+            "appName": "DataCollection"
+        }
+    ],
+    "users": [
+        {
+            "user":"admin",
+            "pass":"123456"
+        }
+    ],
+    "useEncryptedPasswords": false,
+    "trustProxy": 1
+}, true);
+
+
+
+
+// Serve the Parse API on the /parse URL prefix
+var MountPath = '/parse';
+App.use(MountPath, Server);
+
+// Serve the Parse Dashboard on the /dasboard URL prefix
+var MountPath = '/dashboard';
+App.use(MountPath, dashboard);
+
+// Parse Server plays nicely with the rest of your web routes
+App.get('/', function (req, res) {
+    res.status(200).send('Welcome to DataCollection.');
+});
+
+
+var port = 8081;
+var httpServer = require('http').createServer(App);
+httpServer.listen(port, function() {
+    console.log('DataCollection running on localhost:8081');
+});
+
+
+

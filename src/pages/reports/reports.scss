@@ -1,0 +1,25 @@
+page-reports {
+	ion-content {
+		background: #f9f8f8 !important;
+	}
+	ion-select, ion-input {
+		border: 1px solid #333;
+    background: #bccff1;
+	}
+	ion-item {
+		background-color: #eee !important; 
+	}
+	ion-radio {
+		border: 1px solid #333;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    padding: 1px 2px;
+	}
+	table {
+		margin-top: 20px;
+		td{
+			padding: 20px 3px;
+		}
+	}
+}
