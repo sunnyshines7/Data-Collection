@@ -18,6 +18,7 @@ export class ReportsPage {
   directory: any;
   wbs: any = {};
   waterList: any; 
+  isNetWork: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: DbProvider) {
   }
@@ -29,7 +30,7 @@ export class ReportsPage {
   ngOnInit() {
     this.user = this.dbService.getCurrentUser();
     this.directory = JSON.parse(localStorage.getItem('directory'));
-
+    this.isNetWork = localStorage.getItem('network') == 'online' ? true : false;
   }
 
   changedVillage(data) {

@@ -23,7 +23,7 @@ export class WaterBodySchedulePage {
   wbs: any = {};
   isNetwork: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: DbProvider, public camera: Camera, public geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: DbProvider, public camera: Camera, private geolocation: Geolocation) {
   }
 
   ionViewDidLoad() {
@@ -31,6 +31,7 @@ export class WaterBodySchedulePage {
   }
 
   ngOnInit() {
+    
     this.user = this.dbService.getCurrentUser();
     console.log(this.user);
     this.directory = JSON.parse(localStorage.getItem('directory'));
@@ -39,24 +40,24 @@ export class WaterBodySchedulePage {
   }
 
   takePhoto() {
-    /* var geo_opt = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    }
     this.geolocation.getCurrentPosition().then((resp) => {
       // resp.coords.latitude
       // resp.coords.longitude
-      alert(JSON.stringify(resp));
-      alert(JSON.stringify(resp.coords));
+      this.wbs.location = {
+          "__type": "GeoPoint",
+          "latitude": resp.coords.latitude,
+          "longitude": resp.coords.longitude
+      }
     }).catch((error) => {
       console.log('Error getting location', error);
-    }); */
+    });
+
     const options: CameraOptions = {
       destinationType: this.camera.DestinationType.FILE_URI,
       // quality: 25,
       correctOrientation: true,
-      sourceType: 1
+      sourceType: 1,
+      saveToPhotoAlbum: true
     }
     
     this.camera.getPicture(options).then((imageData) => {

@@ -14,7 +14,10 @@
   </ion-header>
 
 <ion-content class="back_image" padding>
-  <div class="back" >
+  <div *ngIf="!isNetWork">
+    <h2 style="text-align: center; margin-top: 5em !important;">Please Connect to internet to View Data</h2>
+  </div>
+  <div class="back" *ngIf="isNetWork">
     <ion-list radio-group disabled="true" style="margin: 0;" [(ngModel)]="user.directory.area">
       <ion-row class="text-center">
         <ion-col col-6>
@@ -78,8 +81,8 @@
             </tr>
             <tr *ngFor="let w of waterList">
               <td>{{w.uik}}</td>
-              <td>1.2456788</td>
-              <td>-17.23832832</td>
+              <td>{{w.location?.latitude}}</td>
+              <td>{{w.location?.longitude}}</td>
               <td><img src=""></td>
             </tr>
           </table>
