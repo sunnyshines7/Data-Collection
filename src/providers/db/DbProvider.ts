@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/Rx';
+import { FileUploadOptions, FileTransferObject, FileTransfer } from '@ionic-native/file-transfer';
 
 /*
   Generated class for the DbProvider provider.
@@ -14,15 +15,19 @@ export class DbProvider {
 
   headers: Headers;
   baseurl: string = "";
+  server_url: string = "";
 
-  constructor(public http: Http) {
+  constructor(public http: Http, public transfer: FileTransfer) {
     this.headers = new Headers();
     this.headers.append('X-Parse-Application-Id', "AGdJfMjQmSpVsXuZx4z6C9EbGeKgNjRnTqVtYv2y");
     this.headers.append('X-Parse-REST-API-Key', "kRnTqWtYv3y5A7DaFcHfMhPkSpUrXuZw3z6B8DbG");
     this.headers.append('X-Parse-MASTER-Key', "MjQmSqVsXu2x4z6C9EbGeKgNkRnTqWtYv2y5A7Ca");
     this.headers.append('Content-Type', "application/json");
 
-    this.baseurl = "http://192.168.0.115:8081/parse/";
+    // this.server_url = 'http://192.168.0.115:8081/';
+    this.server_url = 'http://192.168.1.43:8081/';
+    
+    this.baseurl = this.server_url +'parse/';
     // this.baseurl = "http://localhost:8081/parse/";
   }
 
@@ -97,6 +102,26 @@ export class DbProvider {
       .do((data: any) => {
         return data;
       });
+  }
+
+  uploadFile(img, desc) {
+    // Destination URL
+    let url = this.server_url + 'uploadImages';
+    
+    // File for Upload
+    var targetPath = img;
+
+    var options: FileUploadOptions = {
+      fileKey: 'image',
+      chunkedMode: false,
+      mimeType: 'multipart/form-data',
+      params: { 'desc': desc }
+    };
+
+    const fileTransfer: FileTransferObject = this.transfer.create();
+
+    // Use the FileTransfer to upload the image
+    return fileTransfer.upload(targetPath, url, options);
   }
 
 }

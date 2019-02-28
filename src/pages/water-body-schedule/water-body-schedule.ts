@@ -22,6 +22,7 @@ export class WaterBodySchedulePage {
   user: any;
   wbs: any = {};
   isNetwork: string;
+  selectedDirectory: any = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: DbProvider, public camera: Camera, private geolocation: Geolocation) {
   }
@@ -37,12 +38,10 @@ export class WaterBodySchedulePage {
     this.directory = JSON.parse(localStorage.getItem('directory'));
     this.isNetwork = localStorage.getItem('network');  
     console.log(this.isNetwork)
-  }
-
-  takePhoto() {
     this.geolocation.getCurrentPosition().then((resp) => {
       // resp.coords.latitude
       // resp.coords.longitude
+      console.log(resp);
       this.wbs.location = {
           "__type": "GeoPoint",
           "latitude": resp.coords.latitude,
@@ -51,7 +50,9 @@ export class WaterBodySchedulePage {
     }).catch((error) => {
       console.log('Error getting location', error);
     });
+  }
 
+  takePhoto() {
     const options: CameraOptions = {
       destinationType: this.camera.DestinationType.FILE_URI,
       // quality: 25,
@@ -65,20 +66,21 @@ export class WaterBodySchedulePage {
       // If it's base64 (DATA_URL):
       //  let base64Image = 'data:image/jpeg;base64,' + imageData;
       this.wbs.photo = normalizeURL(imageData);
+      
     }, (err) => {
      // Handle error
     });
   }
 
   saveData(water) {
-    if(!water.directory){
+    if(!this.selectedDirectory){
       alert("Please select a village");
       return;
     }
     water.directory = {
       "__type": "Pointer",
       "className": "Directory",
-      "objectId": water.directory.objectId
+      "objectId": this.selectedDirectory.objectId
     };
     water.user = {
       "__type": "Pointer",
@@ -87,15 +89,22 @@ export class WaterBodySchedulePage {
     }
     water.type = this.user.directory.area;
     if(this.isNetwork == 'online') {
-      this.dbService.saveWaterSchedule(water).subscribe((resp: any) => {
-        console.log("sucess");
-        this.navCtrl.setRoot(HomePage);
-      },
-      error => {
-        if (error) {
-          console.error(error);
-        }
-      })
+      this.dbService.uploadFile(this.wbs.photo, '').then(res => {
+        console.log(res);
+        this.wbs.imageFile = JSON.parse(res.response);
+        this.dbService.saveWaterSchedule(water).subscribe((resp: any) => {
+          console.log("sucess");
+          this.navCtrl.setRoot(HomePage);
+        },
+        error => {
+          if (error) {
+            console.error(error);
+          }
+        });
+      }, err => {
+        console.error(err);
+      });;
+      
     }else {
       console.log("offline");
       var prev_data = JSON.parse(localStorage.getItem('water_schedule'));
@@ -107,7 +116,7 @@ export class WaterBodySchedulePage {
   }
 
   changedVillage(data) {
-    this.wbs.uik = this.user.directory.area_code+'/'+this.user.directory.state_code+'/'+this.user.directory.district_code+'/'+this.user.directory.mandal_code+'/'+this.wbs.directory.village_code+'/';
+    this.wbs.uik = this.user.directory.area_code+'/'+this.user.directory.state_code+'/'+this.user.directory.district_code+'/'+this.user.directory.mandal_code+'/'+data.village_code+'/';
   }
 
   

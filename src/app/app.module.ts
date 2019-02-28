@@ -20,6 +20,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { NetworkProvider } from '../providers/network/network';
 import { Network } from '@ionic-native/network';
 import { SyncPage } from '../pages/sync/sync';
+import { FileTransfer } from '@ionic-native/file-transfer';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,9 @@ import { SyncPage } from '../pages/sync/sync';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DbProvider,
     NetworkProvider,
-    Network
+    Network,
+    FileTransfer
+    
     // HTTP
   ]
 })

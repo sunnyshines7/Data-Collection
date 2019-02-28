@@ -34,19 +34,26 @@ export class SyncPage {
         var this_ref= this;
         for(var i = 0; i<data.length; i++) {
           var promise = new Promise(function(resolve, reject) {
-          this_ref.dbService.saveWaterSchedule(data[i]).subscribe((resp: any) => {
-            console.log("sucess");
-            resolve();
-            /* if(i == data.length-1){
-              this_ref.isUploaded = false;
-              localStorage.removeItem('water_schedule');
-            } */
-          },
-          error => {
-            if (error) {
-              console.error(error);
-            }
-          })
+            this_ref.dbService.uploadFile(data[i].photo, '').then(res => {
+            console.log(res);
+            data[i].imageFile = JSON.parse(res.response);
+            this_ref.dbService.saveWaterSchedule(data[i]).subscribe((resp: any) => {
+              console.log("sucess");
+              resolve();
+              /* if(i == data.length-1){
+                this_ref.isUploaded = false;
+                localStorage.removeItem('water_schedule');
+              } */
+            },
+            error => {
+              if (error) {
+                console.error(error);
+              }
+            })
+          }, err => {
+            console.error(err);
+          });;
+          
           });
             promises.push(promise);
         }
