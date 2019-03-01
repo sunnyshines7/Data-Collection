@@ -19,7 +19,7 @@ export class ReportsPage {
   wbs: any = {};
   waterList: any; 
   isNetWork: boolean;
-  server_url: string = 'http://192.168.1.43:8081/';
+  server_url: string = 'http://trac.telangana.gov.in:8081/';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: DbProvider) {
   }

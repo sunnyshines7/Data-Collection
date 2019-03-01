@@ -34,6 +34,7 @@ export class SyncPage {
         var this_ref= this;
         for(var i = 0; i<data.length; i++) {
           var promise = new Promise(function(resolve, reject) {
+            // data[i].photo = data[i].photo ? data[i].photo : '';
             this_ref.dbService.uploadFile(data[i].photo, '').then(res => {
             console.log(res);
             data[i].imageFile = JSON.parse(res.response);

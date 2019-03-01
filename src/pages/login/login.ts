@@ -37,7 +37,7 @@ export class LoginPage {
 
     this.dbServices.signIn(form.value.email_id,form.value.auth)
       .subscribe((data: any) => {
-        // console.log(data);
+        console.log(data);
         localStorage.auth = 'loggedIn';
         this.dbServices.getUser(data.objectId).subscribe((user: any) => {
           console.log(data);
@@ -48,8 +48,8 @@ export class LoginPage {
                 "path": "/parse/classes/WaterBodySchedule",
                 "body": {
                   "where":{
-                    "type": "rural",
-                    "directory": data.directory
+                    // "type": "rural",
+                    "directory":{"$inQuery":{"where":{"district_name":user.directory.district_name,"area":"rural"},"className":"Directory"}}
                   },
                   "count": 1,
                   "limit": 0
@@ -60,8 +60,8 @@ export class LoginPage {
                 "path": "/parse/classes/WaterBodySchedule",
                 "body": {
                   "where":{
-                    "type": "urban",
-                    "directory": data.directory
+                    // "type": "urban",
+                    "directory":{"$inQuery":{"where":{"district_name":user.directory.district_name,"area":"urban"},"className":"Directory"}}
                   },
                   "count": 1,
                   "limit": 0
@@ -69,7 +69,9 @@ export class LoginPage {
               }
             ]
           };
+
           this.dbServices.sendBatch(req_batch).subscribe((counts: any) => {
+            console.log(counts);
             user.ruralCount = counts[0].success.count;
             user.urbanCount = counts[1].success.count;
             this.dbServices.setCurrentUser(user);

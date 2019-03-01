@@ -89,9 +89,11 @@ export class WaterBodySchedulePage {
     }
     water.type = this.user.directory.area;
     if(this.isNetwork == 'online') {
+      // this.wbs.photo = this.wbs.photo ? this.wbs.photo : '';
       this.dbService.uploadFile(this.wbs.photo, '').then(res => {
         console.log(res);
         this.wbs.imageFile = JSON.parse(res.response);
+        console.log(water);
         this.dbService.saveWaterSchedule(water).subscribe((resp: any) => {
           console.log("sucess");
           this.navCtrl.setRoot(HomePage);
