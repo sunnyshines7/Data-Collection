@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DbProvider } from '../../providers/db/DbProvider';
+import { forEachSeries, forEach } from 'p-iteration';
 
 /**
  * Generated class for the SyncPage page.
@@ -32,13 +33,17 @@ export class SyncPage {
       if(data) {
         var promises = [];
         var this_ref= this;
-        for(var i = 0; i<data.length; i++) {
+        forEachSeries(data, (val, key) => {
+
           var promise = new Promise(function(resolve, reject) {
             // data[i].photo = data[i].photo ? data[i].photo : '';
-            this_ref.dbService.uploadFile(data[i].photo, '').then(res => {
+            //@ts-ignore
+            this_ref.dbService.uploadFile(val.photo, '').then(res => {
             console.log(res);
-            data[i].imageFile = JSON.parse(res.response);
-            this_ref.dbService.saveWaterSchedule(data[i]).subscribe((resp: any) => {
+            // console.log(data +""+i);
+            //@ts-ignore
+            val.imageFile = JSON.parse(res.response);
+            this_ref.dbService.saveWaterSchedule(val).subscribe((resp: any) => {
               console.log("sucess");
               resolve();
               /* if(i == data.length-1){
@@ -57,7 +62,7 @@ export class SyncPage {
           
           });
             promises.push(promise);
-        }
+        });
         Promise.all(promises).then(tempArr =>{
           this.isUploaded = 'Data Uploaded Complete';
           localStorage.removeItem('water_schedule'); 
