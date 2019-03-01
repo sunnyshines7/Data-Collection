@@ -25,7 +25,7 @@ export class DbProvider {
     this.headers.append('Content-Type', "application/json");
 
     // this.server_url = 'http://192.168.0.115:8081/';
-    this.server_url = 'http://192.168.1.43:8081/';
+    this.server_url = 'http://trac.telangana.gov.in:8081/';
     
     this.baseurl = this.server_url +'parse/';
     // this.baseurl = "http://localhost:8081/parse/";
