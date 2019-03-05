@@ -24,8 +24,9 @@ export class HomePage {
             "path": "/parse/classes/WaterBodySchedule",
             "body": {
               "where":{
-                // "type": "rural",
-                "directory":{"$inQuery":{"where":{"district_name":this.user.directory.district_name,"area":"rural"},"className":"Directory"}}
+                "type": "rural",
+                "directory": {"__type": "Pointer", "className": "Directory", "objectId": this.user.directory.objectId} 
+                // "directory":{"$inQuery":{"where":{"district_name":this.user.directory.district_name,"area":"rural"},"className":"Directory"}}
               },
               "count": 1,
               "limit": 0
@@ -36,8 +37,9 @@ export class HomePage {
             "path": "/parse/classes/WaterBodySchedule",
             "body": {
               "where":{
-                // "type": "urban",
-                "directory":{"$inQuery":{"where":{"district_name":this.user.directory.district_name,"area":"urban"},"className":"Directory"}}
+                "type": "urban",
+                "directory": {"__type": "Pointer", "className": "Directory", "objectId": this.user.directory.objectId} 
+                // "directory":{"$inQuery":{"where":{"district_name":this.user.directory.district_name,"area":"urban"},"className":"Directory"}}
               },
               "count": 1,
               "limit": 0
@@ -50,6 +52,10 @@ export class HomePage {
         console.log(counts);
         this.user.ruralCount = counts[0].success.count;
         this.user.urbanCount = counts[1].success.count;
+        if(localStorage.getItem('water_schedule')){
+          var local_count = JSON.parse(localStorage.getItem('water_schedule')).length;
+          this.user.ruralCount = this.user.ruralCount + local_count;
+        }
         this.dbService.setCurrentUser(this.user);
       },
       error => {

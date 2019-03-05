@@ -75,8 +75,8 @@ export class MyApp {
 
   
 
-  Onload(page: any) {
-    this.nav.setRoot(page);
+  Onload(page: any, page_name: string) {
+    this.nav.setRoot(page, {page_name: page_name});
     this.menuCtrl.close();
   }
 

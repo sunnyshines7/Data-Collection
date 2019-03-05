@@ -12,10 +12,12 @@
     <ion-row *ngIf="user?.directory">
       <ion-col col-6>State: {{user.directory.state_name}}</ion-col>
       <ion-col col-6>District: {{user.directory.district_name}}</ion-col>
+      <ion-col col-6>Mandal: {{user.directory.mandal}}</ion-col>
+      <ion-col col-6>Village: {{user.directory.village}}</ion-col>
     </ion-row>
     <div style="background-color: #fff; border-radius: 5px; margin: 25px 0;padding: 15px 0;">
       <ion-row class="text-center">
-        <p style="font-weight: 600; font-size: 16px;">No.of Records in District</p>
+        <p style="font-weight: 600; font-size: 16px;">No.of Records in Village</p>
       </ion-row>
       <ion-row class="text-center">
         <p>Water Body Schedule</p>

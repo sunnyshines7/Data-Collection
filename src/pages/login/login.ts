@@ -48,8 +48,9 @@ export class LoginPage {
                 "path": "/parse/classes/WaterBodySchedule",
                 "body": {
                   "where":{
-                    // "type": "rural",
-                    "directory":{"$inQuery":{"where":{"district_name":user.directory.district_name,"area":"rural"},"className":"Directory"}}
+                    "type": "rural",
+                    "directory": data.directory
+                    // "directory":{"$inQuery":{"where":{"district_name":user.directory.district_name,"area":"rural"},"className":"Directory"}}
                   },
                   "count": 1,
                   "limit": 0
@@ -60,8 +61,9 @@ export class LoginPage {
                 "path": "/parse/classes/WaterBodySchedule",
                 "body": {
                   "where":{
-                    // "type": "urban",
-                    "directory":{"$inQuery":{"where":{"district_name":user.directory.district_name,"area":"urban"},"className":"Directory"}}
+                    "type": "urban",
+                    "directory": data.directory
+                    // "directory":{"$inQuery":{"where":{"district_name":user.directory.district_name,"area":"urban"},"className":"Directory"}}
                   },
                   "count": 1,
                   "limit": 0

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/Rx';
 import { FileUploadOptions, FileTransferObject, FileTransfer } from '@ionic-native/file-transfer';
+import { AlertController } from 'ionic-angular';
 
 /*
   Generated class for the DbProvider provider.
@@ -17,7 +18,7 @@ export class DbProvider {
   baseurl: string = "";
   server_url: string = "";
 
-  constructor(public http: Http, public transfer: FileTransfer) {
+  constructor(public http: Http, public transfer: FileTransfer, public alertCtrl: AlertController) {
     this.headers = new Headers();
     this.headers.append('X-Parse-Application-Id', "AGdJfMjQmSpVsXuZx4z6C9EbGeKgNjRnTqVtYv2y");
     this.headers.append('X-Parse-REST-API-Key', "kRnTqWtYv3y5A7DaFcHfMhPkSpUrXuZw3z6B8DbG");
@@ -122,6 +123,15 @@ export class DbProvider {
 
     // Use the FileTransfer to upload the image
     return fileTransfer.upload(targetPath, url, options);
+  }
+
+  showAlert(title, msg) {
+    const alert = this.alertCtrl.create({
+      title: title,
+      subTitle: msg,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

@@ -1,8 +1,22 @@
 page-sync {
 	.dataMsg {
-		h2{
-			text-align: center;
-    	margin-top: 5em !important;
+		text-align: center;
+		margin-top: 5em !important;
+	}
+	.local_list {
+		p {
+			font-weight: 600;
+			span {
+				color: #5492ff
+			}
+		}
+		ion-thumbnail {
+			margin: 0px 10px 0px 0 ;
+			min-width: 70px;
+			min-height: 70px;
+		}
+		ion-item {
+			margin-top: 8px;
 		}
 	}
 }

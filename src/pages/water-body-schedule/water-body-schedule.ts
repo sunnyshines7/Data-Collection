@@ -37,7 +37,14 @@ export class WaterBodySchedulePage {
     console.log(this.user);
     this.directory = JSON.parse(localStorage.getItem('directory'));
     this.isNetwork = localStorage.getItem('network');  
-    console.log(this.isNetwork)
+    console.log(this.isNetwork);
+    // convert 1 to 001
+    var temp = this.user.ruralCount+1;
+    var temp_str = temp.toString();
+    var temp_len = temp_str.length
+    temp_str = temp_len<3 && temp_len>1 ? '0'+ temp_str : (temp_len<2 && temp_len>0 ? '00'+temp_str : temp_str);
+    this.wbs.sl_no = this.user.ruralCount + 1;
+    this.wbs.uik = this.user.directory.area_code+'/'+this.user.directory.state_code+'/'+this.user.directory.district_code+'/'+this.user.directory.mandal_code+'/'+this.user.directory.village_code+'/'+ temp_str;
     this.geolocation.getCurrentPosition().then((resp) => {
       // resp.coords.latitude
       // resp.coords.longitude
@@ -72,15 +79,48 @@ export class WaterBodySchedulePage {
     });
   }
 
-  saveData(water) {
-    if(!this.selectedDirectory){
-      alert("Please select a village");
+  saveOffline(water) {
+    if(!this.wbs.photo){
+      alert("Please select an Image");
       return;
     }
     water.directory = {
       "__type": "Pointer",
       "className": "Directory",
-      "objectId": this.selectedDirectory.objectId
+      "objectId": this.user.directory.objectId
+      // "objectId": this.selectedDirectory.objectId
+    };
+    water.user = {
+      "__type": "Pointer",
+      "className": "_User",
+      "objectId": this.user.objectId
+    }
+    water.type = this.user.directory.area;
+    console.log("offline");
+    var prev_data = JSON.parse(localStorage.getItem('water_schedule'));
+    var data = prev_data ? prev_data : [];
+    data.push(water);
+    localStorage.setItem('water_schedule', JSON.stringify(data));
+    this.user.ruralCount = this.wbs.sl_no;
+    this.dbService.setCurrentUser(this.user);
+    this.dbService.showAlert('Data Saved', 'Data saved locally and sync when the internet is available');
+    this.navCtrl.setRoot(HomePage);
+  }
+
+  saveData(water) {
+    if(!this.wbs.photo){
+      alert("Please select an Image");
+      return;
+    }
+    /* if(!this.selectedDirectory){
+      alert("Please select a village");
+      return;
+    } */
+    water.directory = {
+      "__type": "Pointer",
+      "className": "Directory",
+      "objectId": this.user.directory.objectId
+      // "objectId": this.selectedDirectory.objectId
     };
     water.user = {
       "__type": "Pointer",
@@ -120,6 +160,29 @@ export class WaterBodySchedulePage {
   changedVillage(data) {
     this.wbs.uik = this.user.directory.area_code+'/'+this.user.directory.state_code+'/'+this.user.directory.district_code+'/'+this.user.directory.mandal_code+'/'+data.village_code+'/';
   }
+
+  formatGovtId(e) {
+    console.log(e);
+    console.log(e.keyCode);
+    console.log(e.key)
+    var len = this.wbs.govt_wbId.length;
+    console.log(len);
+    if((e.which > 47 && e.which < 57) || e.which == 229){
+      if(len == 1 || len == 4 || len == 7 || len == 10 || len == 17){
+        this.wbs.govt_wbId = this.wbs.govt_wbId + '/'
+      } 
+      if(len > 21){
+        this.wbs.govt_wbId = (this.wbs.govt_wbId.substring(0, this.wbs.govt_wbId.length - 1));
+      }
+    }else if(e.which == 8 || e.which == 46){
+      if(len == 1 || len == 4 || len == 7 || len == 10 || len == 17){
+        this.wbs.govt_wbId = (this.wbs.govt_wbId.substring(0, this.wbs.govt_wbId.length - 1));  
+      } 
+    }
+    else{
+      this.wbs.govt_wbId = (this.wbs.govt_wbId.substring(0, this.wbs.govt_wbId.length - 1));
+    }
+  }  
 
   
 

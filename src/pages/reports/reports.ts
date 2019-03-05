@@ -18,7 +18,7 @@ export class ReportsPage {
   directory: any;
   wbs: any = {};
   waterList: any; 
-  isNetWork: boolean;
+  isNetwork: boolean;
   server_url: string = 'http://trac.telangana.gov.in:8081/';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: DbProvider) {
@@ -31,7 +31,8 @@ export class ReportsPage {
   ngOnInit() {
     this.user = this.dbService.getCurrentUser();
     this.directory = JSON.parse(localStorage.getItem('directory'));
-    this.isNetWork = localStorage.getItem('network') == 'online' ? true : false;
+    this.isNetwork = localStorage.getItem('network') == 'online' ? true : false;
+    this.changedVillage(this.user.directory);
   }
 
   changedVillage(data) {

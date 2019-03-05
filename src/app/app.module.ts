@@ -21,6 +21,7 @@ import { NetworkProvider } from '../providers/network/network';
 import { Network } from '@ionic-native/network';
 import { SyncPage } from '../pages/sync/sync';
 import { FileTransfer } from '@ionic-native/file-transfer';
+import { WaterViewPage } from '../pages/water-view/water-view';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FileTransfer } from '@ionic-native/file-transfer';
     LoginPage,
     WaterBodySchedulePage,
     ReportsPage,
-    SyncPage
+    SyncPage,
+    WaterViewPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { FileTransfer } from '@ionic-native/file-transfer';
     LoginPage,
     WaterBodySchedulePage,
     ReportsPage,
-    SyncPage
+    SyncPage,
+    WaterViewPage
   ],
   providers: [
     StatusBar,

@@ -13,6 +13,22 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="dataMsg">
-  <h2 >{{isUploaded}}</h2>
+<ion-content padding style="background-color: #f9f8f8">
+  <h2 class="dataMsg" *ngIf="isUploaded">{{isUploaded}}</h2>
+  <div>
+    <ion-list no-lines class="local_list">
+      <ion-item *ngFor="let water of waterList" (click)="navToView(water)">
+        <ion-thumbnail item-start>
+          <img *ngIf="page == 'report'" src="{{server_url+'photo/'+water.imageFile.filename}}">
+          <img *ngIf="page == 'sync'" src="{{water.photo}}">
+        </ion-thumbnail>
+        <p>ID: <span>{{water.sl_no}}</span></p>
+        <p>Survery Number: <span>{{water.uik}}</span></p>
+        <p>Cultivator Name: <span>{{water.cultivator}}</span></p>
+        <p>Land Type: <span>{{water.scheme}}</span></p>
+        <p item-end style="margin-top: -55px;"><span>{{water.enumeration}}</span></p>
+      </ion-item>
+    </ion-list>
+    <button ion-button full (click)="syncData()" *ngIf="waterList?.length > 0 && page=='sync'" >Sync</button>
+  </div>
 </ion-content>

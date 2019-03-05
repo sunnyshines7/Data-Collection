@@ -1,16 +1,25 @@
 page-water-body-schedule {
 	ion-content {
 		div.back {
-			background: #eee !important;
+			background: #fff !important;
 			// margin: 16px;
 		}
 	}
-	ion-select, ion-input {
+	ion-select, ion-input, ion-datetime {
 		border: 1px solid #333;
-    background: #bccff1;
+		background: #fff;
+		border-radius: 10px;
+		padding-left: 12px !important;
+	}
+	ion-label {
+		font-size: 1.5rem !important;
+    font-weight: 500;
 	}
 	ion-item {
-		background-color: #eee !important; 
+		background-color: #fff !important; 
+	}
+	.select-disabled, .item-select-disabled ion-label, .radio-disabled, .item-radio-disabled ion-label {
+    opacity: 1;
 	}
 	ion-radio {
 		/* border: 1px solid #333;
@@ -46,5 +55,12 @@ page-water-body-schedule {
     color: #fff;
     text-align: center;
     padding: 36px 0;
+	}
+	.list-md .item-input:last-child {
+    border-bottom: transparent !important;
+	}
+	.list-md .item-input.item-input-has-focus:last-child, .list-md .item-input.input-has-focus:last-child{
+		border-bottom-color: transparent !important;
+		box-shadow: none;
 	}
 }

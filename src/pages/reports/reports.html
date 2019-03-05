@@ -14,10 +14,10 @@
   </ion-header>
 
 <ion-content class="back_image" padding>
-  <div *ngIf="!isNetWork">
+  <div *ngIf="!isNetwork">
     <h2 style="text-align: center; margin-top: 5em !important;">Please Connect to internet to View Data</h2>
   </div>
-  <div class="back" *ngIf="isNetWork">
+  <div class="back" *ngIf="isNetwork">
     <ion-list radio-group disabled="true" style="margin: 0;" [(ngModel)]="user.directory.area">
       <ion-row class="text-center">
         <ion-col col-6>
@@ -64,8 +64,11 @@
         <ion-col col-6>
           <ion-item>
             <ion-label stacked>Village</ion-label>
-            <ion-select interface="popover" [(ngModel)]='wbs.directory' (ionChange)="changedVillage(wbs.directory)">
+            <!-- <ion-select interface="popover" [(ngModel)]='wbs.directory' (ionChange)="changedVillage(wbs.directory)">
               <ion-option *ngFor="let vil of directory" [value]="vil">{{vil.village}}</ion-option>
+            </ion-select> -->
+            <ion-select disabled="true" interface="popover" [(ngModel)]='user.directory.village'>
+              <ion-option [value]="user.directory.village">{{user.directory.village}}</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>
