@@ -45,24 +45,26 @@ export class MyApp {
           alert('network:online ==> '+this.network.type);        
           localStorage.setItem('network', 'online');  
       });
+      this.events.subscribe('user', (user) => {
+        this.user = this.dbService.getCurrentUser();
+        if (user) {
+            this.is_authorized = true;
+            this.rootPage = HomePage
+        } else {
+            this.rootPage = LoginPage;
+        }
+      });
     });
     
-    events.subscribe('user:singedin', (user) => {
-      if (user) {
-          this.is_authorized = true;
-          this.rootPage = HomePage
-      } else {
-          this.rootPage = LoginPage;
-      }
-    });
+  
   }
 
   ngOnInit() {
+    this.user = this.dbService.getCurrentUser();
     if(localStorage){
       var auth = localStorage.auth;
       this.is_authorized =  true;
       // this.is_authorized = localStorage.getItem('auth') == 'loggedIn' ? true : false;
-      this.user = this.dbService.getCurrentUser();
       if( auth && auth =='loggedIn' ) {
         this.rootPage = HomePage;
       } else {

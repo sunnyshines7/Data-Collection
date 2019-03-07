@@ -60,6 +60,16 @@ export class DbProvider {
       });
   }
 
+  signup(data) {
+    return this.http.post(this.baseurl + 'users', data, {headers: this.headers})
+      .map((resp: Response) => {
+        return resp.json();
+      })
+      .do((data: any) => {
+        return data;
+      });
+  }
+
   getDirectory(district, state, mandal) {
     var obj = {
       "district_name": district,
@@ -73,6 +83,16 @@ export class DbProvider {
       .do((data: any) => {
         return data;
       });
+  }
+
+  getDirectoryByObject(data, params) {
+    return this.http.get(this.baseurl + 'aggregate/Directory?where=' + JSON.stringify(data) + params, {headers: this.headers})
+      .map((resp: Response) => {
+        return resp.json();
+      })
+      .do((data: any) => {
+        return data;
+      })
   }
 
   saveWaterSchedule(data) {

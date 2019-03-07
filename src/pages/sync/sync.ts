@@ -24,6 +24,10 @@ export class SyncPage {
   directory: any;
   server_url: string = 'http://trac.telangana.gov.in:8081/';
 
+  district: any;
+  mandal: any;
+  village: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: DbProvider, public loadingCtrl: LoadingController) {
   }
 
@@ -46,7 +50,9 @@ export class SyncPage {
         this.isUploaded = !this.waterList ? 'Data is Up to Date' : ''; 
       }
       else {
-        this.changedVillage(this.user.directory);
+        if(this.user.type!='admin'){
+          this.changedVillage(this.user.directory);
+        }
       }
     }
   }
@@ -123,6 +129,53 @@ export class SyncPage {
 
   navToView(data) {
     this.navCtrl.push(WaterViewPage, {waterData : data, page_name: this.page})
+  }
+
+  selectNext(type) {
+    console.log(type);
+    console.log(this.user.state);
+    var sel, params;
+    if(type == 'state'){
+      sel = {
+        "state_name": this.user.state
+      };
+      params = '&distinct=district_name'
+    }
+    if(type == 'district'){
+      sel = {
+        "district_name": this.user.district
+      };
+      params = '&distinct=mandal'
+    }
+    /* if(type == 'mandal'){
+      sel = {
+        "mandal": this.user.mandal
+      };
+      params = '&distinct=village'
+    } */
+    
+    this.dbService.getDirectoryByObject(sel, params).subscribe((resp) => {
+      console.log(resp);
+      if(type == 'state'){
+        this.district = resp.results;
+      }
+      if(type == 'district'){
+        this.mandal = resp.results;
+      }
+    },
+    (err) => {
+      console.error(err);
+    })
+  }
+
+  getDirectory() {
+    this.dbService.getDirectory(this.user.district, this.user.state, this.user.mandal).subscribe((resp) => {
+      console.log(resp);
+      this.village = resp.results;
+    },
+    (err) => {
+      console.error(err);
+    })
   }
 
 

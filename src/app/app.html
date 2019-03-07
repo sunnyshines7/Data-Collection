@@ -16,7 +16,7 @@
           </button>
           <ion-note item-end color="primary"></ion-note>
         </ion-item>
-        <ion-item >
+        <ion-item *ngIf="user?.type!='admin'">
           <button ion-item tappable (click)="Onload(waterPage)" class="menu_button">
             <ion-icon name="calendar" item-left></ion-icon>
             <h6 class="sidemenu-title">Water Body Schedule</h6>
@@ -30,7 +30,7 @@
           </button>
           <ion-note item-end color="primary"></ion-note>
         </ion-item>
-        <ion-item >
+        <ion-item *ngIf="user?.type!='admin'">
           <button ion-item tappable (click)="Onload(syncPage, 'sync')" class="menu_button">
             <ion-icon name="sync" item-left></ion-icon>
             <h6 class="sidemenu-title">Sync</h6>

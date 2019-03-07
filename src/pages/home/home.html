@@ -9,11 +9,48 @@
 
 <ion-content padding>
   <ion-grid>
-    <ion-row *ngIf="user?.directory">
+    <ion-row *ngIf="user?.directory && user.type != 'admin'">
       <ion-col col-6>State: {{user.directory.state_name}}</ion-col>
       <ion-col col-6>District: {{user.directory.district_name}}</ion-col>
       <ion-col col-6>Mandal: {{user.directory.mandal}}</ion-col>
       <ion-col col-6>Village: {{user.directory.village}}</ion-col>
+    </ion-row>
+    <ion-row *ngIf="user.type=='admin'">
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>State</ion-label>
+          <ion-select interface="popover" name="state" [(ngModel)]="user.state" (ionChange)="selectNext('state')">
+            <ion-option [value]="Telangana">Telangana</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>District</ion-label>
+          <ion-select interface="popover" [(ngModel)]="user.district" (ionChange)="selectNext('district')">
+            <ion-option *ngFor="let dist of district" [value]="dist">{{dist}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Block/Tehsil</ion-label>
+          <ion-select interface="popover" [(ngModel)]="user.mandal" (ionChange)="getDirectory()">
+            <ion-option *ngFor="let mand of mandal" [value]="mand">{{mand}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Village</ion-label>
+          <ion-select interface="popover" [(ngModel)]='user.village' (ionChange)="selectVillage(user.village)">
+            <ion-option *ngFor="let vil of village" [value]="vil">{{vil.village}}</ion-option>
+          </ion-select>
+          <!-- <ion-select interface="popover" [(ngModel)]="user">
+            <ion-option [value]="user">{{user}}</ion-option>
+          </ion-select> -->
+        </ion-item>
+      </ion-col>
     </ion-row>
     <div style="background-color: #fff; border-radius: 5px; margin: 25px 0;padding: 15px 0;">
       <ion-row class="text-center">

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, Events } from 'io
 import { DbProvider } from '../../providers/db/DbProvider';
 import { HomePage } from '../home/home';
 import { NgForm } from '@angular/forms';
+import { RegisterPage } from '../register/register';
 
 /**
  * Generated class for the LoginPage page.
@@ -87,6 +88,7 @@ export class LoginPage {
           this.dbServices.getDirectory(user.directory.district_name, user.directory.state_name, user.directory.mandal).subscribe((directory: any) => {
             // console.log(directory);
             localStorage.setItem('directory',JSON.stringify(directory.results));
+            this.events.publish('user');
             this.navCtrl.setRoot( HomePage );
           },
           error => {
@@ -119,6 +121,10 @@ export class LoginPage {
             }).present();
         }
     });
+  }
+
+  navTo() {
+    this.navCtrl.setRoot(RegisterPage);
   }
 
 }

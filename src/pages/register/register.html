@@ -1,23 +1,19 @@
-<!--
-  Generated template for the SyncPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Sixth Minor Irrigation Censes</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding style="background-color: #f9f8f8">
-  <h2 class="dataMsg" *ngIf="isUploaded">{{isUploaded}}</h2>
-  <div>
-    <ion-list no-lines class="local_list">
-      <ion-row *ngIf="user.type == 'admin' && isNetwork"> 
+  
+<ion-content class="back_image" padding style="background: url('./assets/imgs/Tungabhadra_Dam__0.jpg'); background-size:cover;">
+  <div class="back" >
+    <ion-list>
+      <ion-row>
+        <ion-col col-12>
+          <img src="./assets/imgs/Telengana_State_Emblem.png" class="img-responsive site-logo" />
+          <div class="login_text">
+            <p>Sixth Minor Irrigation Censes</p>
+            <!-- <p>M/O Water Resources, RD & GR</p> -->
+            <p>Government of Telangana</p>
+          </div>
+          <h3>Register</h3>
+        </ion-col>
+      </ion-row>
+      <ion-row style="background-color: #fff;border-radius: 10px;">
         <ion-col col-6>
           <ion-item>
             <ion-label stacked>State</ion-label>
@@ -45,7 +41,7 @@
         <ion-col col-6>
           <ion-item>
             <ion-label stacked>Village</ion-label>
-            <ion-select interface="popover" [(ngModel)]='user.village' (ionChange)="changedVillage(user.village)">
+            <ion-select interface="popover" [(ngModel)]='user.village' (ionChange)="selectedDirectory(user.village)">
               <ion-option *ngFor="let vil of village" [value]="vil">{{vil.village}}</ion-option>
             </ion-select>
             <!-- <ion-select interface="popover" [(ngModel)]="user">
@@ -53,19 +49,28 @@
             </ion-select> -->
           </ion-item>
         </ion-col>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label stacked>UserName</ion-label>
+            <ion-input type="text" disabled [(ngModel)]="user.username"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label stacked>Password</ion-label>
+            <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
-      <ion-item *ngFor="let water of waterList" (click)="navToView(water)">
-        <ion-thumbnail item-start>
-          <img *ngIf="page == 'report'" src="{{server_url+'photo/'+water.imageFile.filename}}">
-          <img *ngIf="page == 'sync'" src="{{water.photo}}">
-        </ion-thumbnail>
-        <p>ID: <span>{{water.sl_no}}</span></p>
-        <p>Survery Number: <span>{{water.uik}}</span></p>
-        <p>Cultivator Name: <span>{{water.cultivator}}</span></p>
-        <p>Land Type: <span>{{water.scheme}}</span></p>
-        <p item-end style="margin-top: -55px;"><span>{{water.enumeration}}</span></p>
-      </ion-item>
+      <ion-row>
+        <button ion-button style="margin: 0 auto; width: 100%;" (click)="register(user)">Submit</button>
+      </ion-row>
+      <ion-row style="margin: 0 auto; font-size: 16px; font-weight: 600;padding: 15px 170px;">
+        <a style="color:#fff;" (click)="navTo()">Login</a>
+      </ion-row>
     </ion-list>
-    <button ion-button full (click)="syncData()" *ngIf="waterList?.length > 0 && page=='sync'" >Sync</button>
   </div>
 </ion-content>
+  
+  
+  

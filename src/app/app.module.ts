@@ -9,6 +9,7 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 import { DbProvider } from '../providers/db/DbProvider';
 // import { HTTP } from '@ionic-native/http';
 import { HttpModule } from '@angular/http';
@@ -29,6 +30,7 @@ import { WaterViewPage } from '../pages/water-view/water-view';
     HomePage,
     ListPage,
     LoginPage,
+    RegisterPage,
     WaterBodySchedulePage,
     ReportsPage,
     SyncPage,
@@ -48,7 +50,8 @@ import { WaterViewPage } from '../pages/water-view/water-view';
     WaterBodySchedulePage,
     ReportsPage,
     SyncPage,
-    WaterViewPage
+    WaterViewPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
