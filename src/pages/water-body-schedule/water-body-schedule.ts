@@ -42,9 +42,19 @@ export class WaterBodySchedulePage {
     var temp = this.user.ruralCount+1;
     var temp_str = temp.toString();
     var temp_len = temp_str.length
-    temp_str = temp_len<3 && temp_len>1 ? '0'+ temp_str : (temp_len<2 && temp_len>0 ? '00'+temp_str : temp_str);
+    // temp_str = temp_len<3 && temp_len>1 ? '0'+ temp_str : (temp_len<2 && temp_len>0 ? '00'+temp_str : temp_str);
+    temp_str = temp_len<4 && temp_len>2 ? '0'+ temp_str : (temp_len<3 && temp_len>1 ? '00'+temp_str : (temp_len<2 && temp_len>0 ? '000'+temp_str : temp_str));
     this.wbs.sl_no = this.user.ruralCount + 1;
     this.wbs.uik = this.user.directory.area_code+'/'+this.user.directory.state_code+'/'+this.user.directory.district_code+'/'+this.user.directory.mandal_code+'/'+this.user.directory.village_code+'/'+ temp_str;
+    
+    this.wbs.enumeration = (new Date()).toISOString();
+  }
+
+  updateUIK() {
+    this.wbs.uik2 = this.user.directory.area_code+'/'+this.user.directory.state_code+'/'+this.user.directory.district_code+'/'+this.user.directory.mandal_code+'/'+this.user.directory.village_code+'/'+ this.wbs.sl_no2;  
+  }
+
+  takePhoto() {
     this.geolocation.getCurrentPosition().then((resp) => {
       // resp.coords.latitude
       // resp.coords.longitude
@@ -57,9 +67,7 @@ export class WaterBodySchedulePage {
     }).catch((error) => {
       console.log('Error getting location', error);
     });
-  }
 
-  takePhoto() {
     const options: CameraOptions = {
       destinationType: this.camera.DestinationType.FILE_URI,
       // quality: 25,
