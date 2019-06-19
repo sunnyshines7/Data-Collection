@@ -23,6 +23,7 @@ import { Network } from '@ionic-native/network';
 import { SyncPage } from '../pages/sync/sync';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { WaterViewPage } from '../pages/water-view/water-view';
+import { LogoutPage } from '../pages/logout/logout';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { WaterViewPage } from '../pages/water-view/water-view';
     WaterBodySchedulePage,
     ReportsPage,
     SyncPage,
-    WaterViewPage
+    WaterViewPage,
+    LogoutPage
   ],
   imports: [
     BrowserModule,

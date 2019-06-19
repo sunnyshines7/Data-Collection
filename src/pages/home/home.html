@@ -3,13 +3,13 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Sixth Minor Irrigation Censes</ion-title>
+    <ion-title>Sixth Minor Irrigation Census</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="back_image" style="background: url('./assets/imgs/3.jpg'); background-size:cover;">
   <ion-grid>
-    <ion-row *ngIf="user?.directory && user.type != 'admin'">
+    <ion-row *ngIf="user?.directory && user.type != 'admin'" class="col_text">
       <ion-col col-6>State: {{user.directory.state_name}}</ion-col>
       <ion-col col-6>District: {{user.directory.district_name}}</ion-col>
       <ion-col col-6>Mandal: {{user.directory.mandal}}</ion-col>
@@ -52,7 +52,7 @@
         </ion-item>
       </ion-col>
     </ion-row>
-    <div style="background-color: #fff; border-radius: 5px; margin: 25px 0;padding: 15px 0;">
+    <div style="background-color: rgba(0, 0, 0, 0.68); border-radius: 5px; margin: 25px 0;padding: 15px 0;">
       <ion-row class="text-center">
         <p style="font-weight: 600; font-size: 16px;">No.of Records in Village</p>
       </ion-row>
@@ -62,7 +62,7 @@
       <ion-row class="text-center">
         <ion-col col-12 >
           <div class="circle_count_outer" style="width: 50%; margin: 0 auto;">
-            <div class="circle_count" style="background-color: #3abfe0">
+            <div class="circle_count" style="background-color: #3b9ea9">
               <p><b>Rural</b></p>
               <p>{{user.ruralCount}}</p>
             </div>
