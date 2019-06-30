@@ -1,7 +1,10 @@
+
 page-login {
-  /* .back_image {
-    background: url('/assets/imgs/Tungabhadra_Dam__0.jpg'); background-size:cover;
-  } */
+    
+  .developedBy{
+
+    vertical-align: top; margin-top: 10px; display: inline-block; margin-right: 10px;color:#fff;
+  }
   .site-logo {
     margin: 0 auto;
     display: block;
@@ -32,7 +35,7 @@ page-login {
     font-size: 20px;
     margin-bottom: 30px;
     width: 90%;
-    background-color: #3abfe0;
+    background-color: #3b9ea9;
     color: #fff;
     font-weight: 700;
     margin-left: 6%;
@@ -41,7 +44,7 @@ page-login {
   .logo {
     h3 {
       text-align: center;
-      // color: #fff;
+      color: #fff;
       margin-bottom: 10px;
       font-size: 26px;
     }
