@@ -1,13 +1,13 @@
 page-water-body-schedule {
 	ion-content {
 		div.back {
-			background: #fff !important;
+			// background: #fff !important;
 			// margin: 16px;
 		}
 	}
 	ion-select, ion-input, ion-datetime {
-		border: 1px solid #333;
-		background: #fff;
+		// border: 1px solid #333;
+		// background: #fff;
 		border-radius: 10px;
 		padding-left: 12px !important;
 	}
@@ -41,7 +41,7 @@ page-water-body-schedule {
 		font-size: 3em;
     margin: 0 auto;
     color: #fff;
-    background-color: #3abfe0;
+    background-color: #3b9ea9;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -51,7 +51,7 @@ page-water-body-schedule {
 		margin: 16px auto;
     height: 100px;
     width: 129px;
-    background: #3abfe0;
+    background: #3b9ea9;
     color: #fff;
     text-align: center;
     padding: 36px 0;

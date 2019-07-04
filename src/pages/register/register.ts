@@ -10,7 +10,6 @@ import { LoginPage } from '../login/login';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',

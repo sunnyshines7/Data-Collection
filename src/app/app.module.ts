@@ -25,6 +25,8 @@ import { FileTransfer } from '@ionic-native/file-transfer';
 import { WaterViewPage } from '../pages/water-view/water-view';
 import { LogoutPage } from '../pages/logout/logout';
 
+// import { Diagnostic } from '@ionic-native/diagnostic';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -64,7 +66,8 @@ import { LogoutPage } from '../pages/logout/logout';
     DbProvider,
     NetworkProvider,
     Network,
-    FileTransfer
+    FileTransfer,
+    // Diagnostic
     
     // HTTP
   ]

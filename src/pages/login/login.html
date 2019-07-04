@@ -1,19 +1,19 @@
 <!-- <ion-content class="back_image" style="background: url('./assets/imgs/Tungabhadra_Dam__0.jpg'); background-size:cover;"> -->
-<ion-content class="back_image">
+<ion-content class="back_image" style="background: url('./assets/imgs/3.jpg'); background-size:cover;">
   <ion-grid class="logo">
     <ion-row>
       <ion-col>
         <form #f="ngForm" (ngSubmit)="onSignIn(f)">
           <img src="./assets/imgs/Telengana_State_Emblem.png" class="img-responsive site-logo" />
           <div class="login_text">
-            <p>Sixth Minor Irrigation Censes</p>
+            <p>Sixth Minor Irrigation Census</p>
             <!-- <p>M/O Water Resources, RD & GR</p> -->
             <p>Government of Telangana</p>
           </div>
           <h3>Login</h3>
           <ion-item>
             <ion-icon name="contact" item-left></ion-icon>
-            <ion-input placeholder="Email Id" name="email_id" type="email" clearInput ngModel></ion-input>
+            <ion-input placeholder="User Id" name="email_id" type="email" clearInput ngModel></ion-input>
           </ion-item>
           <ion-item>
             <ion-icon name="key" item-left></ion-icon>
@@ -31,7 +31,7 @@
       <a (click)="navTo()">Register</a>
     </ion-row> -->
     <ion-row style="margin: 0 auto;">
-      <div><span style="vertical-align: top; margin-top: 10px; display: inline-block; margin-right: 10px;">Developed By </span><span><img src="./assets/imgs/TRAC_LOGO.jpg" style="width: 60px"></span></div>
+      <div><span class="developedBy">Developed By </span><span><img src="./assets/imgs/TRAC_LOGO.jpg" style="width: 60px"></span></div>
     </ion-row>
   </ion-grid>
 </ion-content>

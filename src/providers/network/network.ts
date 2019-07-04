@@ -24,7 +24,8 @@ export class NetworkProvider {
   }
 
     public initializeNetworkEvents(): void {
-        var isNet = this.network.type == 'none' ? 'offline' : 'online';
+        var isNet = this.network.type == 'none' || this.network.type == '3g' ? 'offline' : 'online';
+        alert(this.network.type);
         localStorage.setItem('network', isNet);
         this.network.onDisconnect().subscribe(() => {
             if (this.previousStatus === ConnectionStatusEnum.Online) {

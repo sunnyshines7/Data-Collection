@@ -47,7 +47,7 @@ export class SyncPage {
     }else{
       if(this.page == 'sync'){
         this.waterList = JSON.parse(localStorage.getItem('water_schedule'));
-        this.isUploaded = !this.waterList ? 'Data is Up to Date' : ''; 
+        this.isUploaded = !this.waterList || this.waterList.length == 0 ? 'Data is Up to Date' : ''; 
       }
       else {
         if(this.user.type!='admin'){
