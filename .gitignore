@@ -31,6 +31,7 @@ www/
 $RECYCLE.BIN/
 
 Server/logs
+resources/
 
 .DS_Store
 Thumbs.db
