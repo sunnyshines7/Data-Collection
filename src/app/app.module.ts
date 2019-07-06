@@ -26,6 +26,7 @@ import { WaterViewPage } from '../pages/water-view/water-view';
 import { LogoutPage } from '../pages/logout/logout';
 
 // import { Diagnostic } from '@ionic-native/diagnostic';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { LogoutPage } from '../pages/logout/logout';
     NetworkProvider,
     Network,
     FileTransfer,
+    LocationAccuracy
     // Diagnostic
     
     // HTTP

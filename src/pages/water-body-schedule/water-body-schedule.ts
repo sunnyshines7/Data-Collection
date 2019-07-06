@@ -6,6 +6,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { normalizeURL } from 'ionic-angular';
 import { HomePage } from '../home/home';
 // import { Diagnostic } from '@ionic-native/diagnostic';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
+
 
 /**
  * Generated class for the WaterBodySchedulePage page.
@@ -24,9 +26,9 @@ export class WaterBodySchedulePage {
   wbs: any = {};
   isNetwork: string;
   selectedDirectory: any = {};
-  isGpsEnabled: boolean= true;
+  isGpsEnabled: boolean= false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: DbProvider, public camera: Camera, private geolocation: Geolocation) {//, public diagnostic: Diagnostic
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dbService: DbProvider, public camera: Camera, private geolocation: Geolocation, public locationAccuracy: LocationAccuracy) {//, public diagnostic: Diagnostic
   }
 
   ionViewDidLoad() {
@@ -34,15 +36,8 @@ export class WaterBodySchedulePage {
   }
 
   ngOnInit() {
-
-    /* this.diagnostic.isGpsLocationEnabled().then((isGps) => {
-      this.isGpsEnabled = isGps;
-      alert(this.isGpsEnabled);
-      if(this.isGpsEnabled){
-        this.enableGPS();
-      }
-    }) */
-    
+    this.enableGPS(false);
+   
     this.user = this.dbService.getCurrentUser();
     console.log(this.user);
     this.directory = JSON.parse(localStorage.getItem('directory'));
@@ -103,12 +98,21 @@ export class WaterBodySchedulePage {
     }
     else{
       alert('Please enable GPS');
-      this.enableGPS();
+      this.enableGPS(true);
     }
   }
 
-  enableGPS() {
-    this.isGpsEnabled = true;
+  enableGPS(forPhoto) {
+    this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+      () => {
+        console.log('Request successful');
+        this.isGpsEnabled = true;
+        if(forPhoto){
+          this.takePhoto();
+        }
+      },
+      error => console.log('Error requesting location permissions', error)
+    );
   }
 
   saveOffline(water) {
