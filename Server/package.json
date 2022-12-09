@@ -10,7 +10,7 @@
   "author": "sandeep",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "multer": "^1.4.1",
     "parse-dashboard": "^1.2.0",
     "parse-server": "^3.1.3"
